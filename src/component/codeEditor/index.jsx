@@ -8,8 +8,9 @@ const CodeEditor = () => {
   const onChange = () => {};
   return (
     <CodeMirror
-      value={"console.log('Hello World')"}
+      value={"console.log('Hello World');"}
       height={"100vh"}
+      className={"text-sm"}
       width={"100%"}
       extensions={[javascript({ jsx: true })]}
       onChange={onChange}

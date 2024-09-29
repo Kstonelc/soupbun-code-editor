@@ -9,9 +9,16 @@ createRoot(document.getElementById("root")).render(
     <ConfigProvider
       theme={{
         token: {
-          // Seed Token，影响范围大
-          cardHeight: 10,
-          cardGutter: 20,
+          // 全局Token配置
+        },
+        components: {
+          //组件Token配置
+          Tabs: {
+            cardPaddingSM: 3,
+          },
+          Tree: {
+            nodeSelectedBg: "#2e2f31",
+          },
         },
       }}
     >

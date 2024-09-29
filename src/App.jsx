@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { Flex, Splitter, Tabs, Typography } from "antd";
+import React, { useEffect, useRef, useState } from "react";
+import { Divider, Flex, Splitter, Typography } from "antd";
 import { CodeEditor } from "./component";
+import { Tabs, Tree } from "./common";
 const Desc = (props) => (
   <Flex
     justify="center"
@@ -22,37 +23,40 @@ const Desc = (props) => (
 );
 const App = () => {
   useEffect(() => {}, []);
-  const tabItems = new Array(2).fill(null).map((_, index) => {
-    const id = String(index + 1);
-    return {
-      label: `Tab ${id}`,
-      children: `Content of Tab Pane ${index + 1}`,
-      key: id,
-    };
-  });
   return (
     <Splitter
+      className={"bg-background"}
       style={{
         height: "100vh",
         width: "100vw",
       }}
     >
       <Splitter.Panel
-        defaultSize="400"
-        min={400}
-        max={500}
+        className={"p-1"}
+        defaultSize="300"
+        min={300}
+        max={400}
         collapsible={{
           start: true,
         }}
-        style={{
-          width: 200, // 固定宽度
-          flex: "none", // 不伸缩
-        }}
       >
-        <Desc text={1} />
+        <div
+          className={
+            "flex items-center justify-start  font-bold ml-2 text-white"
+          }
+        >
+          文件
+        </div>
+        <Divider
+          className="my-1 border-white"
+          style={{
+            height: 0.5,
+          }}
+        />
+        <Tree className="mt-2 bg-background text-white"></Tree>
       </Splitter.Panel>
       <Splitter.Panel>
-        <CodeEditor></CodeEditor>
+        <Tabs />
       </Splitter.Panel>
       <Splitter.Panel defaultSize="700" min={600} max={700}>
         <Splitter layout="vertical">
