@@ -1,6 +1,6 @@
 import React from "react";
 import { DownOutlined } from "@ant-design/icons";
-import { Tree as TreeFile } from "antd";
+import { Tree as TreeANT } from "antd";
 const Tree = ({ className }) => {
   const treeData = [
     {
@@ -53,11 +53,8 @@ const Tree = ({ className }) => {
     },
   ];
   return (
-    <TreeFile
-      className={className}
-      style={{
-        borderColor: "blue",
-      }}
+    <TreeANT
+      className={"bg-transparent"}
       showLine
       switcherIcon={<DownOutlined />}
       defaultExpandedKeys={["0-0-0"]}

@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Divider, Flex, Splitter, Typography } from "antd";
-import { CodeEditor } from "./component";
+import { Button, Divider, Flex, Input, Splitter, Typography } from "antd";
+import { CodeEditor, XTerminal } from "./component";
 import { Tabs, Tree } from "./common";
+import {
+  FileAddOutlined,
+  FolderAddOutlined,
+  SyncOutlined,
+} from "@ant-design/icons";
 const Desc = (props) => (
   <Flex
     justify="center"
@@ -25,14 +30,13 @@ const App = () => {
   useEffect(() => {}, []);
   return (
     <Splitter
-      className={"bg-background"}
       style={{
         height: "100vh",
         width: "100vw",
+        backgroundColor: "#242424",
       }}
     >
       <Splitter.Panel
-        className={"p-1"}
         defaultSize="300"
         min={300}
         max={400}
@@ -40,33 +44,60 @@ const App = () => {
           start: true,
         }}
       >
-        <div
-          className={
-            "flex items-center justify-start  font-bold ml-2 text-white"
-          }
-        >
-          文件
-        </div>
-        <Divider
-          className="my-1 border-white"
+        <Flex
+          className={"pl-3 pr-3"}
+          justify={"space-between"}
+          align={"center"}
           style={{
-            height: 0.5,
+            height: 45,
           }}
-        />
-        <Tree className="mt-2 bg-background text-white"></Tree>
+        >
+          <span>文件</span>
+          <Flex>
+            <Button type={"text"} icon={<FileAddOutlined />}></Button>
+            <Button type={"text"} icon={<FolderAddOutlined />}></Button>
+          </Flex>
+        </Flex>
+        <Divider className="mt-0 mb-2" />
+        <Tree></Tree>
       </Splitter.Panel>
       <Splitter.Panel>
         <Tabs />
       </Splitter.Panel>
-      <Splitter.Panel defaultSize="700" min={600} max={700}>
-        <Splitter layout="vertical">
-          <Splitter.Panel>
-            <Desc text="3" />
-          </Splitter.Panel>
-          <Splitter.Panel>
-            <Desc text="4" />
-          </Splitter.Panel>
-        </Splitter>
+      <Splitter.Panel defaultSize="600" min={400} max={700}>
+        <Flex
+          vertical={true}
+          style={{
+            height: "100%",
+          }}
+        >
+          <Flex className={"flex flex-row  items-center pl-2 pr-3 my-3"}>
+            <Button icon={<SyncOutlined />} type={"text"} />
+            <Input disabled={true} value={"http://192.168.1.30:8001/"}></Input>
+          </Flex>
+          <Flex className={"h-full"}>
+            <Splitter layout="vertical">
+              <Splitter.Panel
+                defaultSize="500"
+                min={400}
+                max={600}
+                className={"p-2"}
+              >
+                <iframe
+                  src="http://192.168.1.30:8001"
+                  title="开发环境"
+                  width={"100%"}
+                  height={"100%"}
+                  style={{
+                    borderRadius: 10,
+                    border: "none",
+                  }}
+                />
+              </Splitter.Panel>
+              <Splitter.Panel></Splitter.Panel>
+            </Splitter>
+          </Flex>
+        </Flex>
       </Splitter.Panel>
     </Splitter>
   );
